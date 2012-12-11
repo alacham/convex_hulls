@@ -63,6 +63,7 @@ class IncrHull(object):
             self.rightmost = point
             self.upperRBT[point] = 1
             self.bottomRBT[point] = 1
+        # 2. bod
         elif self.pointCounter == 2:
             if point < self.leftmost:
                 self.leftmost = point
@@ -70,6 +71,8 @@ class IncrHull(object):
                 self.rightmost = point
             self.upperRBT[point] = 1
             self.bottomRBT[point] = 1
+        # 3. a dalsi bod
+        # je to maximum nebo minimum
         elif point < self.leftmost or point > self.rightmost:
             if point > self.rightmost:
                 self.rightmost = point
@@ -80,8 +83,9 @@ class IncrHull(object):
             self.upperRBT[point] = 1
             self.bottomRBT[point] = 1
             trees = (self.upperRBT, self.bottomRBT)
-            hull = (True, False)
-            for tree, is_upper in zip(trees, hull):
+            is_hull_upper = (True, False)
+            # pripadne mazat z obou...
+            for tree, is_upper in zip(trees, is_hull_upper):
                 dellist = []
                 curr_points = []
                 for p in tree.keys(reverser):
@@ -92,8 +96,10 @@ class IncrHull(object):
                         dellist.append(curr_points.pop(1))
                 for key in dellist:
                     del tree[key]
+        # hledat ve stromech atd
         else:
             determ = vector_multip_determ(self.leftmost, self.rightmost, point)
+            # horni/dolni obal
             if determ > 0:
                 tree = self.upperRBT
                 upper = True
