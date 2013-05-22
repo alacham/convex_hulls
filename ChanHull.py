@@ -78,7 +78,7 @@ def left_tangent(hull, spoint, animqueue):
         animqueue.append(('point_line', 'center', GREENGOOD, [spoint,hull[new]],dict(width=2,dashoffset=4)))
         animqueue.append(('step'))
 #        print new, with_l, new_prev, next_d
-        if new_prev != LEFT and new_next != LEFT:
+        if new_prev != LEFT and new_next != LEFT: #new "pivot" is the tangent point
             if new_prev == STRAIGHT:
                 if p_dist(spoint, hull[new]) > p_dist(spoint, hull[new-1]):
                     return new

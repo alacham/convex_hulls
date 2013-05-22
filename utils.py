@@ -20,6 +20,7 @@ ORANGE = "orange"
 import random, time,array
 
 
+#vraci idnex po ktery jsou v poli cisla <= pivotu
 def partition(inarr, l, r, pivot):
     while l <= r:
         if inarr[l] <= pivot:
@@ -31,7 +32,7 @@ def partition(inarr, l, r, pivot):
             r -= 1
     return l-1
 
-    
+#vraci k ty prvek potencialne serazeneho pole
 def get_kth(inarr, k):
     l = 0
     r = len(inarr)-1
